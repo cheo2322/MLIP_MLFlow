@@ -8,6 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
+import random
 
 def generate_model_name() -> str:
     """Generate a model name based on the current time
@@ -16,7 +17,7 @@ def generate_model_name() -> str:
         str: model name
     """
     # Generate a random hex string as the model name
-    return hex(np.random.randint(0, 16**8))[2:]
+    return hex(random.getrandbits(32))[2:]
 
 def data_preprocessing() -> tuple[np.ndarray]:
     """Generate digits dataset's train and test dataset
