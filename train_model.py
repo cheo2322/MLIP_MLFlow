@@ -19,15 +19,26 @@ mlflow.set_experiment(experiment_name)
 # Generates train and test dataset using `pipeline.data_preprocessing` function
 X_train, X_test, y_train, y_test = pipeline.data_preprocessing()
 
+# params = {
+#     "solver": "lbfgs",
+#     "max_iter": 1000,
+#     "multi_class": "auto",
+#     "random_state": 8888,
+# }
 params = {
-    "solver": "lbfgs",
-    "max_iter": 1000,
-    "multi_class": "auto",
-    "random_state": 8888,
+    "n_estimators": 100,     
+    "criterion": "gini",     
+    "max_depth": None,       
+    "min_samples_split": 2,  
+    "min_samples_leaf": 1,   
+    "max_features": "sqrt",  
+    "bootstrap": True,       
+    "random_state": 8888     
 }
 
 # Use `pipeline.train_logistic_regression` to generate trained model
-trained_model = pipeline.train_logistic_regression(X_train, y_train, params)
+# trained_model = pipeline.train_logistic_regression(X_train, y_train, params)
+trained_model = pipeline.train_random_forest(X_train, y_train, params)
 # use `pipeline.evaluation` to evaluate the model
 accuracy = pipeline.evaluation(trained_model, X_test, y_test)
 
